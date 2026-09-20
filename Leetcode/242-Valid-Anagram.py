@@ -1,15 +1,15 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        freq_dict_s = {}
+        freq_by_char = {}
 
         for c in s:
-            count_c = freq_dict_s.get(c, 0)
-            freq_dict_s[c] = count_c + 1
-
-        freq_dict_t = {}
-
+            freq_by_char[c] = freq_by_char.get(c, 0) + 1
+        
         for c in t:
-            count_c = freq_dict_t.get(c, 0)
-            freq_dict_t[c] = count_c + 1
+            freq_by_char[c] = freq_by_char.get(c, 0) - 1
+        
+        for v in freq_by_char.values():
+            if v != 0:
+                return False
 
-        return freq_dict_s == freq_dict_t
+        return True
